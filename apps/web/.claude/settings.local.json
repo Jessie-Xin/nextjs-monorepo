@@ -2,7 +2,10 @@
   "permissions": {
     "allow": [
       "Bash(curl:*)",
-      "Bash(npm run codegen:*)"
+      "Bash(npm run codegen:*)",
+      "Read(//Users/user/Desktop/xin/monorepo/**)",
+      "Bash(pnpm dlx tsx:*)",
+      "Bash(cat:*)"
     ],
     "deny": [],
     "ask": []

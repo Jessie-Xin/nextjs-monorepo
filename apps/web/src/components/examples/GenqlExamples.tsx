@@ -9,7 +9,7 @@
 
 import { useState } from "react";
 import { client, saveAuthToken, clearAuthToken } from "@/lib/genql-client";
-import type { FieldsSelection, Query } from "@/genql";
+import { UserBasic, queryFields } from "@/lib/genql-types";
 
 /**
  * 示例 1: 用户登录（无需手写查询！）
@@ -98,22 +98,8 @@ export function GenqlLoginExample() {
  * 示例 2: 获取当前用户信息
  */
 export function GenqlUserProfileExample() {
-  // ✨ 定义查询字段选择（可复用的查询片段）
-  const userFields = {
-    id: true,
-    email: true,
-    firstname: true,
-    lastname: true,
-    role: true,
-    createdAt: true,
-    updatedAt: true,
-  } as const;
-
-  // ✨ 使用 genql 的 FieldsSelection 工具类型自动推断类型
-  // 这样类型会与查询字段完全匹配，并且有正确的类型定义
-  type UserResult = FieldsSelection<Query["me"], typeof userFields>;
-
-  const [user, setUser] = useState<UserResult | null>(null);
+  // ✨ 方案1：直接使用预定义的类型（最简单！）
+  const [user, setUser] = useState<UserBasic | null>(null);
   const [loading, setLoading] = useState(false);
   const [error, setError] = useState<string | null>(null);
 
@@ -122,9 +108,9 @@ export function GenqlUserProfileExample() {
     setError(null);
 
     try {
-      // 🎉 完全类型安全的查询构建
+      // 🎉 使用预定义的查询字段，保持类型一致
       const result = await client.query({
-        me: userFields,
+        me: queryFields.userBasic,
       });
 
       setUser(result.me);
@@ -169,7 +155,34 @@ export function GenqlUserProfileExample() {
  * 示例 3: 获取已发布的文章列表（Relay 分页）
  */
 export function GenqlPostsListExample() {
-  const [posts, setPosts] = useState<any>(null);
+  // ✨ 方案2：使用类型推断 - 让 TypeScript 自动推断查询结果类型
+  // 先定义查询配置
+  const postsQuery = {
+    publishedPosts: {
+      __args: {
+        orderBy: {
+          field: "createdAt" as const,
+          direction: "desc" as const,
+        },
+      },
+      edges: {
+        cursor: true,
+        node: queryFields.postWithAuthor,
+      },
+      pageInfo: {
+        hasNextPage: true,
+        hasPreviousPage: true,
+        startCursor: true,
+        endCursor: true,
+      },
+      totalCount: true,
+    },
+  } as const;
+
+  // 使用 Awaited 和 ReturnType 从查询推断类型
+  type PostsQueryResult = Awaited<ReturnType<typeof client.query<typeof postsQuery>>>["publishedPosts"];
+
+  const [posts, setPosts] = useState<PostsQueryResult | null>(null);
   const [loading, setLoading] = useState(false);
   const [error, setError] = useState<string | null>(null);
 
@@ -178,41 +191,8 @@ export function GenqlPostsListExample() {
     setError(null);
 
     try {
-      // 🎉 类型安全的复杂查询
-      const result = await client.query({
-        publishedPosts: {
-          __args: {
-            orderBy: {
-              field: "createdAt",
-              direction: "desc",
-            },
-          },
-          edges: {
-            cursor: true,
-            node: {
-              id: true,
-              title: true,
-              content: true,
-              published: true,
-              createdAt: true,
-              updatedAt: true,
-              author: {
-                id: true,
-                email: true,
-                firstname: true,
-                lastname: true,
-              },
-            },
-          },
-          pageInfo: {
-            hasNextPage: true,
-            hasPreviousPage: true,
-            startCursor: true,
-            endCursor: true,
-          },
-          totalCount: true,
-        },
-      });
+      // 🎉 使用预定义的查询配置
+      const result = await client.query(postsQuery);
 
       setPosts(result.publishedPosts);
     } catch (err) {
@@ -242,7 +222,7 @@ export function GenqlPostsListExample() {
         <>
           <p style={{ marginTop: "10px" }}>共 {posts.totalCount} 篇文章</p>
 
-          {posts.edges.map((edge: any) => (
+          {posts.edges?.map((edge) => (
             <div
               key={edge.node.id}
               style={{

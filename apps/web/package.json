@@ -12,7 +12,8 @@
     "typecheck": "tsc --noEmit",
     "codegen": "graphql-codegen --config codegen.ts",
     "codegen:watch": "graphql-codegen --config codegen.ts --watch",
-    "genql": "genql --endpoint http://localhost:3002/graphql --output ./src/genql"
+    "genql": "genql --endpoint http://localhost:3002/graphql --output ./src/genql",
+    "genql:generate": "pnpm dlx tsx scripts/generate-genql.ts"
   },
   "dependencies": {
     "@genql/cli": "^6.3.3",
