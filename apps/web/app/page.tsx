@@ -1,5 +1,4 @@
-import { GenqlLoginExample } from "@/components/examples/GenqlExamples";
-import { Button } from "@workspace/ui/components/button";
+import GenqlExamplesPage from "@/components/examples/GenqlExamples";
 
 
 export default function Page() {
@@ -9,7 +8,7 @@ export default function Page() {
       <div className="flex flex-col items-center justify-center gap-4">
         <h1 className="text-2xl font-bold">Hello World</h1>
         {/* <Button size="sm">Button</Button> */}
-        <GenqlLoginExample></GenqlLoginExample>
+        <GenqlExamplesPage />
       </div>
     </div>
   );

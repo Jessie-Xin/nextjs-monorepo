@@ -341,7 +341,7 @@ export function GenqlCreatePostExample() {
 /**
  * 完整示例页面
  */
-export function GenqlExamplesPage() {
+export default function GenqlExamplesPage() {
   return (
     <div style={{ maxWidth: "800px", margin: "0 auto", padding: "20px" }}>
       <h1>Genql 使用示例 - 无需手写 GraphQL 查询！</h1>
