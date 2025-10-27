@@ -9,7 +9,7 @@
 
 import { useState } from "react";
 import { client, saveAuthToken, clearAuthToken } from "@/lib/genql-client";
-import { UserBasic, queryFields } from "@/lib/genql-types";
+import { queryConfigs, type QueryResult } from "@/lib/genql-helpers";
 
 /**
  * 示例 1: 用户登录（无需手写查询！）
@@ -98,8 +98,14 @@ export function GenqlLoginExample() {
  * 示例 2: 获取当前用户信息
  */
 export function GenqlUserProfileExample() {
-  // ✨ 方案1：直接使用预定义的类型（最简单！）
-  const [user, setUser] = useState<UserBasic | null>(null);
+  // ✨ 使用 genql 内置的 QueryResult 进行类型推断
+  const userQuery = {
+    me: queryConfigs.userFull,
+  } as const;
+
+  type UserData = QueryResult<typeof userQuery>['me'];
+
+  const [user, setUser] = useState<UserData | null>(null);
   const [loading, setLoading] = useState(false);
   const [error, setError] = useState<string | null>(null);
 
@@ -108,11 +114,7 @@ export function GenqlUserProfileExample() {
     setError(null);
 
     try {
-      // 🎉 使用预定义的查询字段，保持类型一致
-      const result = await client.query({
-        me: queryFields.userBasic,
-      });
-
+      const result = await client.query(userQuery);
       setUser(result.me);
     } catch (err) {
       setError(err instanceof Error ? err.message : "获取失败");
@@ -155,8 +157,7 @@ export function GenqlUserProfileExample() {
  * 示例 3: 获取已发布的文章列表（Relay 分页）
  */
 export function GenqlPostsListExample() {
-  // ✨ 方案2：使用类型推断 - 让 TypeScript 自动推断查询结果类型
-  // 先定义查询配置
+  // ✨ 使用预定义的查询配置 + QueryResult 推断类型
   const postsQuery = {
     publishedPosts: {
       __args: {
@@ -167,22 +168,17 @@ export function GenqlPostsListExample() {
       },
       edges: {
         cursor: true,
-        node: queryFields.postWithAuthor,
+        node: queryConfigs.postNode,
       },
-      pageInfo: {
-        hasNextPage: true,
-        hasPreviousPage: true,
-        startCursor: true,
-        endCursor: true,
-      },
+      pageInfo: queryConfigs.pageInfo,
       totalCount: true,
     },
   } as const;
 
-  // 使用 Awaited 和 ReturnType 从查询推断类型
-  type PostsQueryResult = Awaited<ReturnType<typeof client.query<typeof postsQuery>>>["publishedPosts"];
+  // 简洁的类型推断
+  type PostsData = QueryResult<typeof postsQuery>['publishedPosts'];
 
-  const [posts, setPosts] = useState<PostsQueryResult | null>(null);
+  const [posts, setPosts] = useState<PostsData | null>(null);
   const [loading, setLoading] = useState(false);
   const [error, setError] = useState<string | null>(null);
 
