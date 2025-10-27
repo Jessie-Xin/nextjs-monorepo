@@ -2,13 +2,18 @@
   "extends": "@workspace/typescript-config/nextjs.json",
   "compilerOptions": {
     "baseUrl": ".",
+    "target": "ES6",
     "paths": {
-      "@/*": ["./*"],
+      "@/*": ["./src/*"],
       "@workspace/ui/*": ["../../packages/ui/src/*"]
     },
     "plugins": [
       {
         "name": "next"
+      },
+      {
+        "name": "@0no-co/graphqlsp",
+        "schema": "./schema.graphql"
       }
     ]
   },
