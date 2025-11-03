@@ -8,6 +8,10 @@
       "command": "docker",
       "args": ["mcp", "gateway", "run"],
       "type": "stdio"
+    },
+    "next-devtools": {
+      "command": "npx",
+      "args": ["-y", "next-devtools-mcp@latest"]
     }
   }
 }

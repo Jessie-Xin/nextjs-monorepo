@@ -4,19 +4,20 @@
  * Genql 提供类型安全的查询构建器，无需手写 GraphQL 查询字符串
  */
 
-import { createClient } from '@/genql'
+import { createClient } from "@/genql";
 
 /**
  * GraphQL API 端点
  */
-const GRAPHQL_ENDPOINT = process.env.NEXT_PUBLIC_GRAPHQL_URL || 'http://localhost:3002/graphql'
+const GRAPHQL_ENDPOINT =
+  process.env.NEXT_PUBLIC_GRAPHQL_URL || "http://localhost:3002/graphql";
 
 /**
  * 获取认证 token
  */
 function getAuthToken(): string | null {
-  if (typeof window === 'undefined') return null
-  return localStorage.getItem('accessToken')
+  if (typeof window === "undefined") return null;
+  return localStorage.getItem("accessToken");
 }
 
 /**
@@ -46,33 +47,33 @@ export const client = createClient({
 
   // 配置请求头（每次请求前执行）
   headers: () => {
-    const token = getAuthToken()
+    const token = getAuthToken();
     return {
-      authorization: token ? `Bearer ${token}` : '',
-    }
+      authorization: token ? `Bearer ${token}` : "",
+    };
   },
 
   // 批量请求配置（可选）
   batch: {
-    maxBatchSize: 10,        // 最多批量 10 个请求
-    batchInterval: 20,       // 20ms 内的请求会被批量
+    maxBatchSize: 10, // 最多批量 10 个请求
+    batchInterval: 20, // 20ms 内的请求会被批量
   },
-})
+});
 
 /**
  * 保存认证 token
  */
 export function saveAuthToken(accessToken: string, refreshToken: string) {
-  if (typeof window === 'undefined') return
-  localStorage.setItem('accessToken', accessToken)
-  localStorage.setItem('refreshToken', refreshToken)
+  if (typeof window === "undefined") return;
+  localStorage.setItem("accessToken", accessToken);
+  localStorage.setItem("refreshToken", refreshToken);
 }
 
 /**
  * 清除认证 token
  */
 export function clearAuthToken() {
-  if (typeof window === 'undefined') return
-  localStorage.removeItem('accessToken')
-  localStorage.removeItem('refreshToken')
+  if (typeof window === "undefined") return;
+  localStorage.removeItem("accessToken");
+  localStorage.removeItem("refreshToken");
 }

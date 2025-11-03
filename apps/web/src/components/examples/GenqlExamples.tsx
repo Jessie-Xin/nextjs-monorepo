@@ -103,7 +103,7 @@ export function GenqlUserProfileExample() {
     me: queryConfigs.userFull,
   } as const;
 
-  type UserData = QueryResult<typeof userQuery>['me'];
+  type UserData = QueryResult<typeof userQuery>["me"];
 
   const [user, setUser] = useState<UserData | null>(null);
   const [loading, setLoading] = useState(false);
@@ -176,7 +176,7 @@ export function GenqlPostsListExample() {
   } as const;
 
   // 简洁的类型推断
-  type PostsData = QueryResult<typeof postsQuery>['publishedPosts'];
+  type PostsData = QueryResult<typeof postsQuery>["publishedPosts"];
 
   const [posts, setPosts] = useState<PostsData | null>(null);
   const [loading, setLoading] = useState(false);

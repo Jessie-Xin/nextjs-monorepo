@@ -5,9 +5,12 @@
       "Bash(npm run codegen:*)",
       "Read(//Users/user/Desktop/xin/monorepo/**)",
       "Bash(pnpm dlx tsx:*)",
-      "Bash(cat:*)"
+      "Bash(cat:*)",
+      "Bash(pnpm install)",
+      "Bash(npx prettier:*)"
     ],
     "deny": [],
     "ask": []
-  }
+  },
+  "enabledMcpjsonServers": ["shadcn", "MCP_DOCKER"]
 }

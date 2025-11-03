@@ -6,7 +6,7 @@
  */
 
 // 重新导出 genql 的类型工具
-export type { QueryResult, MutationResult } from '@/genql'
+export type { QueryResult, MutationResult } from "@/genql";
 
 /**
  * 可复用的查询字段配置
@@ -63,4 +63,4 @@ export const queryConfigs = {
     startCursor: true,
     endCursor: true,
   },
-} as const
+} as const;

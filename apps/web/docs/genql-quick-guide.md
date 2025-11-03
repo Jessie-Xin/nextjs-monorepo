@@ -5,22 +5,22 @@
 ## 基本模式
 
 ```typescript
-import { queryConfigs, type QueryResult } from '@/lib/genql-helpers'
+import { queryConfigs, type QueryResult } from "@/lib/genql-helpers";
 
 // 1. 定义查询配置
 const userQuery = {
   me: queryConfigs.userFull,
-} as const
+} as const;
 
 // 2. 使用 QueryResult 推断类型
-type UserData = QueryResult<typeof userQuery>['me']
+type UserData = QueryResult<typeof userQuery>["me"];
 
 // 3. 在 state 中使用
-const [user, setUser] = useState<UserData | null>(null)
+const [user, setUser] = useState<UserData | null>(null);
 
 // 4. 执行查询
-const result = await client.query(userQuery)
-setUser(result.me)
+const result = await client.query(userQuery);
+setUser(result.me);
 ```
 
 ## 完整示例
