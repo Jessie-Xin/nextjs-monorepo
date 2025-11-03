@@ -7,10 +7,16 @@
       "Bash(pnpm dlx tsx:*)",
       "Bash(cat:*)",
       "Bash(pnpm install)",
-      "Bash(npx prettier:*)"
+      "Bash(npx prettier:*)",
+      "mcp__shadcn__get_project_registries",
+      "mcp__shadcn__list_items_in_registries"
     ],
     "deny": [],
     "ask": []
   },
-  "enabledMcpjsonServers": ["shadcn", "MCP_DOCKER"]
+  "enabledMcpjsonServers": [
+    "shadcn",
+    "MCP_DOCKER",
+    "next-devtools"
+  ]
 }
