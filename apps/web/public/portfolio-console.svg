@@ -1,0 +1,43 @@
+<svg width="900" height="640" viewBox="0 0 900 640" fill="none" xmlns="http://www.w3.org/2000/svg">
+  <rect width="900" height="640" rx="24" fill="#101312"/>
+  <rect x="1" y="1" width="898" height="638" rx="23" stroke="white" stroke-opacity="0.12"/>
+  <rect x="32" y="30" width="836" height="58" rx="14" fill="#171B19"/>
+  <circle cx="60" cy="59" r="7" fill="#D58A6A"/>
+  <circle cx="84" cy="59" r="7" fill="#D5A24A"/>
+  <circle cx="108" cy="59" r="7" fill="#3D8A5A"/>
+  <text x="716" y="64" fill="#A7B8B0" font-family="Inter, Arial, sans-serif" font-size="15">resume data</text>
+  <rect x="48" y="118" width="270" height="472" rx="18" fill="#F5F1E8"/>
+  <circle cx="104" cy="174" r="35" fill="#3D8A5A"/>
+  <text x="150" y="165" fill="#141716" font-family="Inter, Arial, sans-serif" font-size="30" font-weight="700">Profile</text>
+  <text x="150" y="193" fill="#66716A" font-family="Inter, Arial, sans-serif" font-size="15">CMS record</text>
+  <rect x="78" y="242" width="210" height="10" rx="5" fill="#D8DFD9"/>
+  <rect x="78" y="270" width="164" height="10" rx="5" fill="#D8DFD9"/>
+  <rect x="78" y="310" width="70" height="28" rx="14" fill="#DDECE2"/>
+  <rect x="158" y="310" width="83" height="28" rx="14" fill="#F5E5D8"/>
+  <rect x="78" y="352" width="198" height="46" rx="10" fill="#FFFFFF"/>
+  <rect x="78" y="416" width="156" height="46" rx="10" fill="#FFFFFF"/>
+  <rect x="360" y="118" width="492" height="146" rx="18" fill="#171B19"/>
+  <text x="388" y="158" fill="#F7FAF8" font-family="Inter, Arial, sans-serif" font-size="28" font-weight="700">Project records</text>
+  <text x="388" y="191" fill="#A7B8B0" font-family="Inter, Arial, sans-serif" font-size="16">role · period · tags</text>
+  <rect x="388" y="218" width="126" height="28" rx="14" fill="#1F3D2C"/>
+  <text x="410" y="237" fill="#9FE0B7" font-family="Inter, Arial, sans-serif" font-size="13">ACTIVE</text>
+  <rect x="360" y="286" width="232" height="144" rx="18" fill="#171B19"/>
+  <text x="388" y="326" fill="#F7FAF8" font-family="Inter, Arial, sans-serif" font-size="23" font-weight="700">Skills</text>
+  <rect x="388" y="354" width="76" height="27" rx="13.5" fill="#1F3D2C"/>
+  <rect x="474" y="354" width="94" height="27" rx="13.5" fill="#173243"/>
+  <rect x="388" y="392" width="106" height="27" rx="13.5" fill="#4A2E24"/>
+  <rect x="604" y="286" width="248" height="144" rx="18" fill="#171B19"/>
+  <text x="632" y="326" fill="#F7FAF8" font-family="Inter, Arial, sans-serif" font-size="23" font-weight="700">Milestones</text>
+  <path d="M648 357V405" stroke="#3D8A5A" stroke-width="3" stroke-linecap="round"/>
+  <circle cx="648" cy="357" r="7" fill="#3D8A5A"/>
+  <circle cx="648" cy="405" r="7" fill="#D58A6A"/>
+  <rect x="668" y="349" width="138" height="10" rx="5" fill="#D8DFD9"/>
+  <rect x="668" y="398" width="108" height="10" rx="5" fill="#D8DFD9"/>
+  <rect x="360" y="452" width="492" height="138" rx="18" fill="#171B19"/>
+  <text x="388" y="494" fill="#F7FAF8" font-family="Inter, Arial, sans-serif" font-size="23" font-weight="700">Experience map</text>
+  <rect x="388" y="520" width="184" height="12" rx="6" fill="#3D8A5A"/>
+  <rect x="388" y="546" width="292" height="12" rx="6" fill="#D58A6A"/>
+  <rect x="388" y="572" width="226" height="12" rx="6" fill="#4F8AAB"/>
+  <path d="M745 496C774 496 798 520 798 549C798 578 774 602 745 602C716 602 692 578 692 549C692 520 716 496 745 496Z" fill="#F5F1E8"/>
+  <path d="M745 512C765 512 782 528 782 549C782 569 765 586 745 586" stroke="#3D8A5A" stroke-width="14" stroke-linecap="round"/>
+</svg>
