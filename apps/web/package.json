@@ -12,7 +12,8 @@
     "typecheck": "tsc --noEmit",
     "format": "prettier --write \"**/*.{ts,tsx,json,md}\"",
     "db:generate": "prisma generate",
-    "cms:verify": "node scripts/verify-cms.mjs"
+    "cms:verify": "node scripts/verify-cms.mjs",
+    "portfolio:seed": "node scripts/seed-portfolio-projects.mjs"
   },
   "prettier": "@workspace/prettier-config",
   "dependencies": {
